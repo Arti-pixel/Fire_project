@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Участники тушения пожара</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Участники тушения пожара</h1>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="container">
+            <form>
+              <div class="row">
+                <div class="col-3">
+                  <label>Номер(ранг) пожара:</label>
+                </div>
+                <div class="col-2">
+                  <select id="fire_grade">
+                    <option value="fire_rank_1">пожар №1</option>
+                    <option value="fire_rank_2">пожар №2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label>Пожар потушен силами:</label>
+                </div>
+                <div class="col-2">
+                  <select id="exting_forces">
+                    <option value="federal fire service">
+                      федеральная противопопожарная служба
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <form>
+              <div class="row">
+                <div class="col-1">
+                  <label>РТП-1:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_1" />
+                </div>
+                <div class="col-1">
+                  <label>Ф.И.О:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_1_fio" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>РТП-2:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_2" />
+                </div>
+                <div class="col-1">
+                  <label>Ф.И.О:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_2_fio" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>РТП-3:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_3" />
+                </div>
+                <div class="col-1">
+                  <label>Ф.И.О:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_3_fio" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"><label>РТП-4:</label></div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_4" />
+                </div>
+                <div class="col-1">
+                  <label>Ф.И.О:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_4_fio" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>РТП-5:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_5" />
+                </div>
+                <div class="col-1">
+                  <label>Ф.И.О:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="fire_manager_5_fio" />
+                </div>
+              </div>
+            </form>
+            <form>
+              <div class="row">
+                <div class="col-4 offset-1">Прибыли подразделения ГПС:</div>
+                <div class="col-5 offset-1">Дата и время:</div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>1:</label>
+                </div>
+                <div class="col col-4">
+                  <input
+                    type="text"
+                    id="main_fire_services_1"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="main_services_1_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>2:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="main_fire_services_2"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="main_services_2_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>3:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="main_fire_services_3"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="main_services_3_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>4:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="main_fire_services_4"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="main_services_4_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>5:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="main_fire_services_5"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="main_services_5_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>6:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="main_fire_services_6"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="main_services_6_date" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="container">
+            <form>
+              <div class="row">
+                <div class="col-4 offset-1">Прибыли другие виды ПО:</div>
+                <div class="col-5 offset-1">Дата и время:</div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>1:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="oth_fire_services_1"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="oth_services_1_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>2:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="oth_fire_services_2"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="oth_services_2_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>3:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="oth_fire_services_3"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="oth_services_3_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>4:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="oth_fire_services_4"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="oth_services_4_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>5:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="oth_fire_services_5"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="oth_services_5_date" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>6:</label>
+                </div>
+                <div class="col-4">
+                  <input
+                    type="text"
+                    id="oth_fire_services_6"
+                    style="width: 280px"
+                  />
+                </div>
+                <div class="col-3">
+                  <input type="datetime-local" id="oth_services_6_date" />
+                </div>
+              </div>
+            </form>
+            <form>
+              <div class="row">
+                <div class="col-3 offset-1">Прибыли другие службы</div>
+                <div class="col-2">Дата и время</div>
+                <div class="col-3 offset-1">Личный состав</div>
+                <div class="col-2">Техника</div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>1:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="oth_services_1" />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="datetime-local"
+                    id="oth_services_1_date"
+                    style="width: 175px"
+                  />
+                </div>
+                <div class="col-1">чел:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_1_peop_num"
+                    style="width: 50px"
+                  />
+                </div>
+                <div class="col-1">ед:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_1_tech_num"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"><label>2:</label></div>
+                <div class="col-3">
+                  <input type="text" id="oth_services_2" />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="datetime-local"
+                    id="oth_services_2_date"
+                    style="width: 175px"
+                  />
+                </div>
+                <div class="col-1">чел:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_2_peop_num"
+                    style="width: 50px"
+                  />
+                </div>
+                <div class="col-1">ед:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_2_tech_num"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"><label>3:</label></div>
+                <div class="col-3">
+                  <input type="text" id="oth_services_3" />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="datetime-local"
+                    id="oth_services_3_date"
+                    style="width: 175px"
+                  />
+                </div>
+                <div class="col-1">чел:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_3_peop_num"
+                    style="width: 50px"
+                  />
+                </div>
+                <div class="col-1">ед:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_3_tech_num"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>4:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="oth_services_4" />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="datetime-local"
+                    id="oth_services_4_date"
+                    style="width: 175px"
+                  />
+                </div>
+                <div class="col-1">чел:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_4_peop_num"
+                    style="width: 50px"
+                  />
+                </div>
+                <div class="col-1">ед:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_4_tech_num"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1"><label>5:</label></div>
+                <div class="col-3">
+                  <input type="text" id="oth_services_5" />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="datetime-local"
+                    id="oth_services_5_date"
+                    style="width: 175px"
+                  />
+                </div>
+                <div class="col-1">чел:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_5_peop_num"
+                    style="width: 50px"
+                  />
+                </div>
+                <div class="col-1">ед:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_5_tech_num"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-1">
+                  <label>6:</label>
+                </div>
+                <div class="col-3">
+                  <input type="text" id="oth_services_6" />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="datetime-local"
+                    id="oth_services_6_date"
+                    style="width: 175px"
+                  />
+                </div>
+                <div class="col-1">чел:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_6_peop_num"
+                    style="width: 50px"
+                  />
+                </div>
+                <div class="col-1">ед:</div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="oth_services_6_tech_num"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-3">
+          <a href="index.html"> <--Переход на первую страницу</a>
+        </div>
+        <div class="col-3">
+          <a href="third.html">Переход на третью страницу --></a>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

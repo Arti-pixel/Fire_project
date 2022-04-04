@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Силы и средства на пожаре</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="container">
+            <h1>Личный состав</h1>
+            <form>
+              <div class="row">
+                <div class="col-4">
+                  <label>Личного состава ФПС(чел):</label>
+                </div>
+                <div class="col-1">
+                  <input type="text" id="fed_fire_serv" style="width: 50px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>Личного состава ПСС РК(чел):</label>
+                </div>
+                <div class="col-1">
+                  <input type="text" id="reg_fire_serv" style="width: 50px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>Личного состава ДПО(чел):</label>
+                </div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="volunt_fire_serv"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>Личного состава ВПО(чел):</label>
+                </div>
+                <div class="col-1">
+                  <input
+                    type="text"
+                    id="depart_fire_serv"
+                    style="width: 50px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>Личного состава МПО(чел):</label>
+                </div>
+                <div class="col-1">
+                  <input type="text" id="munic_fire_serv" style="width: 50px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>Личного состава ЧПО(чел):</label>
+                </div>
+                <div class="col-1">
+                  <input type="text" id="priv_fire_serv" style="width: 50px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <label>Организовано звеньев ГДЗС:</label>
+                </div>
+                <div class="col-1">
+                  <input type="text" id="org_fire_brig" style="width: 50px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-5">
+                  <label>Общее время работы звеньев ГДЗС(мин):</label>
+                </div>
+                <div class="col-1">
+                  <input type="text" id="work_time" style="width: 50px" />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col">
+          <div class="container">
+            <h1>Пожарная техника</h1>
+            <h3>Основная</h3>
+            <form>
+              <div class="row">
+                <div class="col">
+                  <label>АЦ:</label
+                  ><input
+                    type="text"
+                    id="fire_tank_truck"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АП:</label
+                  ><input
+                    type="text"
+                    id="powder_exting_vehicl"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>ПНС:</label
+                  ><input
+                    type="text"
+                    id="fire_truck_pump_stat"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АНР:</label
+                  ><input type="text" id="pump_bag_car" style="width: 30px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label>АЦЛ:</label
+                  ><input
+                    type="text"
+                    id="fire_tank_truck_lad"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АПТ:</label
+                  ><input
+                    type="text"
+                    id="foam_exting_vehicl"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АПП:</label
+                  ><input
+                    type="text"
+                    id="first_aid_vehicl"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>МП:</label
+                  ><input type="text" id="fire_eng_pump" style="width: 30px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2 offset-9">
+                  <label>Проч:</label
+                  ><input type="text" id="oth_fire_equip" style="width: 30px" />
+                </div>
+              </div>
+            </form>
+            <h3>Специальная</h3>
+            <form>
+              <div class="row">
+                <div class="col">
+                  <label>АЛ:</label
+                  ><input type="text" id="fire_truck_lad" style="width: 30px" />
+                </div>
+                <div class="col">
+                  <label>АГДЗ:</label
+                  ><input
+                    type="text"
+                    id="gas_protect_serv_vehicl"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АМП:</label
+                  ><input
+                    type="text"
+                    id="multi_purp_fire_truck"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>ПКС:</label
+                  ><input type="text" id="mob_compr_stat" style="width: 30px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label>АКП:</label
+                  ><input
+                    type="text"
+                    id="fire_truck_lift"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АБГ:</label
+                  ><input
+                    type="text"
+                    id="gas_protect_serv_fire_truck"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>ИПЛ:</label
+                  ><input type="text" id="fire_test_lab" style="width: 30px" />
+                </div>
+                <div class="col">
+                  <label>ПП:</label
+                  ><input
+                    type="text"
+                    id="fire_truck_trailer"
+                    style="width: 30px"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label>АР:</label
+                  ><input
+                    type="text"
+                    id="fire_hose_truck"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АШ:</label
+                  ><input
+                    type="text"
+                    id="fire_headq_vehicl"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>АСА:</label
+                  ><input
+                    type="text"
+                    id="fire_resc_vehicle"
+                    style="width: 30px"
+                  />
+                </div>
+                <div class="col">
+                  <label>ПК:</label
+                  ><input type="text" id="fire_crane" style="width: 30px" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-2 offset-9">
+                  <label>Проч:</label
+                  ><input
+                    type="text"
+                    id="oth_spec_fire_equip"
+                    style="width: 30px"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col">
+          <a href="second.html"> <--Переход на вторую страницу</a>
+        </div>
+        <div class="col">
+          <a href="fourth.html">Переход на четвёртую страницу --></a>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

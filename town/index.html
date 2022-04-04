@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Общие данные</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+    <div class="container">
+        <h1>Общие данные</h1>
+        <!-- Контент разбит на 2 row, т.к. содержимое первого row логически не связано с контентом второго row -->
+        <form>
+            <div class="row">
+                <div class="col-4">
+              <label>Населённый пункт:</label>
+            </div>
+            <div class="col-4">
+              <select id="settlement">
+                <option value="murmansk">Мурманск</option>
+              </select>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-4">
+              <label>Вид населённого пункта:</label>
+            </div>
+            <div class="col-4">
+              <select id="locality_type">
+                <option value="town">город</option>
+                <option value="urban village">поселок городского типа</option>
+                <option value="village">село</option>
+                <option value="township">поселок</option>
+                <option value="station">станция</option>
+                <option value="siding">разъезд</option>
+                <option value="oth_locals">иные населённые пункты</option>
+              </select>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+              <label>Адрес места пожара:</label>
+            </div>
+            <div class="col-4">
+              <input type="text" id="address" />
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+              <label>Район выезда ПЧ:</label>
+            </div>
+            <div class="col-4">
+              <select id="point_of_contact">
+                <option value="fs_1">1 ПСЧ</option>
+                <option value="fs_2">2 ПСЧ</option>
+              </select>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+              <label>Объект пожара:</label>
+            </div>
+            <div class="col-4">
+              <select id="fire_object">
+                <option value="fo_1.1">1.1 какое-то здание</option>
+                <option value="fo_1.2">1.2 какое-то другое здание</option>
+              </select>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+              <label>Этажность объекта:</label>
+            </div>
+            <div class="col-4">
+              <input type="text" id="floors_number" />
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+              <label>Степень огнестойкости:</label>
+            </div>
+            <div class="col-4">
+              <select id="degree_of_fireres">
+                <option value="degree_1">|</option>
+                <option value="degree_2">||</option>
+                <option value="degree_3">|||</option>
+              </select>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+              <label>Характеристика объекта:</label>
+              </div>
+              <div class="col-4">
+              <input
+                type="text"
+                style="width: 250px; height: 50px"
+                id="object_charact"
+              />
+            </div>
+            </div>
+          </div>          <!-- надо сделать так(как на макете), 
+                      чтобы текст вводился в правый перхний угол -->
+          </form>
+        </div>
+    <!-- консол логами проверит выводимые даты, если что, поправить -->
+    <div class="col">
+        <div class="container">
+            <h1>Временные показатели</h1>
+            <form>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время обнаружения пожара:</label>
+    </div>
+    <div class="col-5">
+        <input
+          type="datetime-local"
+          id="fire_detection"
+          value="2020-01-03T08:30"
+        />
+    </div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время сообщения о пожаре:</label>
+    </div>
+    <div class="col-5">
+        <input
+          type="datetime-local"
+          id="fire_report"
+          value="2020-01-03T08:30"
+        />
+    </div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время выезда на пожар:</label>
+    </div>
+    <div class="col-5">
+        <input
+          type="datetime-local"
+          id="departure_to_fire"
+          value="2020-01-03T08:30"
+        />
+    </div>
+      </div>
+      <div class="row">
+          <div class="col-4">
+        <label>Обстоятельства выезда:</label>
+    </div>
+    <div class="col-4">
+        <input type="text" id="departure_circum" style="width: 235px;"/>
+    </div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Расстояние до объекта пожара(км):</label>
+    </div>
+    <div class="col-3">
+        <input type="text" id="fire_obj_dist" style="width: 175px;"/>
+        </div>
+    <div class="col-3">
+        S пожара м.кв:
+    </div>
+    </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и вр. прибытия 1-го подр. ПО:</label>
+    </div>
+    <div class="col-3">
+        <input
+          type="datetime-local"
+          id="first_arrival"
+          value="2020-01-03T08:30"
+        />
+    </div>
+    <div class="col-3">
+        <input type="text" id="first_arrival_s" style="width: 80px;"/>
+    </div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время подачи 1-го ствола:</label>
+    </div>
+    <div class="col-3">
+        <input
+          type="datetime-local"
+          id="first_barrel"
+          value="2020-01-03T08:30"
+        />
+    </div>
+    <div class="col-3">
+<input type="text" id="first_barrel_s" style="width: 80px;" />
+</div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время локализации:</label>
+    </div>
+    <div class="col-3">
+        <input
+          type="datetime-local"
+          id="localiz_date"
+          value="2020-01-03T08:30"
+        /></div>
+        <div class="col-3">
+<input type="text" id="localization_date_s" style="width: 80px;"/>
+</div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время ликвидации открытого горения:</label>
+    </div>
+    <div class="col-5">
+        <input
+          type="datetime-local"
+          id="open_fire_elim"
+          value="2020-01-03T08:30"
+        />
+    </div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время ликвидации последствий пожара:</label>
+    </div>
+    <div class="col-5">
+        <input
+          type="datetime-local"
+          id="fire_conseq_elim"
+          value="2020-01-03T08:30"
+        />
+    </div>
+      </div>
+      <div class="row">
+          <div class="col-5">
+        <label>Дата и время возвращения в депо:</label>
+    </div>
+    <div class="col-5">
+        <input
+          type="datetime-local"
+          id="firestation_return_date"
+          value="2020-01-03T08:30"
+        /></div>
+      </div>
+    </div>
+    </form>
+</div>
+</div>
+</div>
+    <div><a href="second.html">Переход на вторую страницу --></a></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>
