@@ -1,0 +1,28 @@
+* {
+    font-family: Noto Sans, sans-serif !important;
+  }
+
+
+/* .accordion-body{
+    background: linear-gradient(90deg, #7247D7, #8D6DD7) !important;
+} */
+
+.btn-primary{
+    background-color: #6824a3;
+    border-color: #620CAC;
+  }
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #4212AF !important;
+  }
+.row{
+    margin-bottom: 10px;
+}
+
+.btn{
+    margin-top: 20px;
+}
+
+.min{
+    text-align: center !important;
+}

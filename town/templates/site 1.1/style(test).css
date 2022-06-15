@@ -1,0 +1,49 @@
+* {
+  font-family: Noto Sans, sans-serif;
+  color: #2841ca;
+}
+.form-select {
+  color: #2841ca !important;
+}
+.form-control {
+  color: #2841ca !important;
+}
+
+body {
+  background: linear-gradient(90deg, #aea4e3, #d3ffe8);
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+input {
+  margin-bottom: 20px !important;
+  padding: 1px 1px 1px 1px !important;
+}
+
+select {
+  margin-bottom: 20px;
+  /* text-align: center; */
+}
+
+option {
+  color: #2841ca;
+}
+
+.bot {
+  margin-bottom: 30px;
+}
+
+.border {
+  border-color: #0d2ec2;
+  border-style: solid;
+}
+
+.input_center {
+  text-align: center !important;
+}
