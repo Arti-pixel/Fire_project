@@ -1,0 +1,62 @@
+{% extends 'base_card.html' %}
+{% block card_info %}
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseOne"
+        aria-expanded="true"
+        aria-controls="panelsStayOpen-collapseOne"
+      >
+        Общие данные
+      </button>
+    </h2>
+    <div
+      id="panelsStayOpen-collapseOne"
+      class="accordion-collapse collapse show"
+      aria-labelledby="panelsStayOpen-headingOne"
+    >
+      <div class="accordion-body">            
+
+        <form 
+          action=
+            {% if card_id %}
+              {% url 'card-edit' card_id %}
+            {% else %}
+            {% url 'card-create'  %}
+              {% endif %} 
+          method="POST">
+
+          {{ gd_form.as_p }}
+          {% csrf_token %}
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+  {% if card_id %}
+  <div class="card-info">
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-conseq-building' card_id %}><div class='item-info-detail'>FireConseqBuilding</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-conseq-people' card_id %}><div class='item-info-detail'>FireConseqPeople</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-descr' card_id %}><div class='item-info-detail'>FireDescr</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-equip' card_id %}><div class='item-info-detail'>FireEquip</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents' card_id %}><div class='item-info-detail'>FireExtingAgents</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents-consum' card_id %}><div class='item-info-detail'>FireExtingAgentsConsum</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-services' card_id %}><div class='item-info-detail'>FireServices</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'firefight-card-auth' card_id %}><div class='item-info-detail'>FirefightCardAuth</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'oth-fire-services' card_id %}><div class='item-info-detail'>OthFireServices</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'oth-services' card_id %}><div class='item-info-detail'>OthServices</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'personnel' card_id %}><div class='item-info-detail'>Personnel</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'prim-fire-exting-means' card_id %}><div class='item-info-detail'>PrimFireExtingMeans</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'spec-fire-equip' card_id %}><div class='item-info-detail'>SpecFireEquip</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'time-indicators' card_id %}><div class='item-info-detail'>TimeIndicators</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'trunks-to-exting-fire' card_id %}><div class='item-info-detail'>TrunksToExtingFire</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'water-supply-on-fire' card_id %}><div class='item-info-detail'>WaterSupplyOnFire</div></a></div>
+  </div>
+  {% endif %}
+</div>
+
+{% endblock card_info %}

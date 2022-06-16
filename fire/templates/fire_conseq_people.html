@@ -1,0 +1,33 @@
+{% extends 'base_card.html' %}
+{% block card_info %}
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFifteen">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseFifteen"
+        aria-expanded="false"
+        aria-controls="panelsStayOpen-collapseFifteen"
+      >
+        Последствия пожара(люди)
+      </button>
+    </h2>
+    <div
+      id="panelsStayOpen-collapseFifteen"
+      class="accordion-collapse collapse"
+      aria-labelledby="panelsStayOpen-headingFifteen"
+    >
+      <div class="accordion-body">
+        fire-conseq-people
+        <form 
+          action={% url 'fire-conseq-people' card_id %} method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}              
+          <input type="submit" value="Submit">
+        </form>
+
+      </div>
+    </div>
+  </div>
+  {% endblock card_info %}  

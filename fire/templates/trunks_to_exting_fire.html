@@ -1,0 +1,33 @@
+{% extends 'base_card.html' %}
+{% block card_info %}
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingFourteen">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseFourteen"
+        aria-expanded="false"
+        aria-controls="panelsStayOpen-collapseFourteen"
+      >
+        Подано стволов на тушение пожара
+      </button>
+    </h2>
+    <div
+      id="panelsStayOpen-collapseFourteen"
+      class="accordion-collapse collapse"
+      aria-labelledby="panelsStayOpen-headingFourteen"
+    >
+      <div class="accordion-body">
+        trunks-to-exting-fire
+        <form 
+          action={% url 'trunks-to-exting-fire' card_id %} method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}              
+          <input type="submit" value="Submit">
+        </form>
+
+      </div>
+    </div>
+  </div>
+  {% endblock card_info %}  

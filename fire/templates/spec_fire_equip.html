@@ -1,0 +1,32 @@
+{% extends 'base_card.html' %}
+{% block card_info %}
+<div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTen">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#panelsStayOpen-collapseTen"
+        aria-expanded="false"
+        aria-controls="panelsStayOpen-collapseTen"
+      >
+        Специальная пожарная техника
+      </button>
+    </h2>
+    <div
+      id="panelsStayOpen-collapseTen"
+      class="accordion-collapse collapse"
+      aria-labelledby="panelsStayOpen-headingTen"
+    >
+      <div class="accordion-body">
+        
+        <form 
+          action={% url 'spec-fire-equip' card_id %} method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}              
+          <input type="submit" value="Submit">
+        </form>        
+      </div>
+    </div>
+  </div>
+  {% endblock card_info %}  

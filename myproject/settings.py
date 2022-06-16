@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'fire.apps.FireConfig'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True 
@@ -132,10 +133,13 @@ USE_TZ = True
 
 #STATIC_URL = 'static/'
 
-STATIC_URL = 'static/' 
+STATIC_URL = "/town/static/"
+LOGIN_REDIRECT_URL = "/town"
+LOGOUT_REDIRECT_URL = "/town"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
