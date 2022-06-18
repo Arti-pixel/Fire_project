@@ -16,9 +16,22 @@
 
 <body>
     <h1 class="cntr header">Список карточек боевых действий</h1>
+    <form action={% url 'index' %} action="get">
+        <div class="filter_form">
+        <div>Населённый пункт: {{ filter_form.settlement }}</div>
+        <div>Вид населённого пункта: {{ filter_form.locality_type }}</div>
+        <div>Адрес места пожара: {{ filter_form.address }}</div>
+        <div>Район выезда ПЧ: {{ filter_form.point_of_contact }}</div>
+        <div>Объект пожара: {{ filter_form.fire_object }}</div>
+        <div>Этажность объекта: {{ filter_form.floors_number }}</div>
+        <div>Степень огнестойкости: {{ filter_form.degree_of_fireres }}</div>
+    </div>
+    <input type="submit" value="Фильтровать">
+    </form>    
     <a class="btn btn-primary marg butn-color" href={% url 'card-create' %} aria-pressed="true">Создать новую запись</a>
     <table id="app" class="table">
         <tr>
+            <th>ИД</th>
             <th>Населённый пункт</th>
             <th>Вид населённого пункта</th>
             <th>Адрес места пожара</th>
@@ -27,9 +40,11 @@
             <th>Этажность объекта</th>
             <th>Степень огнестойкости</th>
             <th>Редактировать</th>
+            <th>Дублицировать</th>
         </tr>
         {% for card in cards %}
         <tr>
+            <td>{{ card.card_id }}</td>
             <td>{{ card.settlement }}</td>
             <td>{{ card.locality_type }}</td>
             <td>{{ card.address }}</td>
@@ -38,6 +53,7 @@
             <td>{{ card.floors_number}}</td>
             <td>{{ card.degree_of_fireres }}</td>
             <td><a href={% url 'card-edit' card_id=card.card_id %}>Редактировать</a></td>
+            <td><a href={% url 'card-dublicate' card_id=card.card_id %}>Дублицировать</a></td>
         </tr>            
         {% endfor %}
     </table>

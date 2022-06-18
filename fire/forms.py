@@ -16,6 +16,18 @@ class GeneralDataForm(ModelForm):
             "object_charact",
         ]
 
+class GeneralDataFormFilter(GeneralDataForm):
+    def __init__(self, *args, **kwargs):
+        super(GeneralDataFormFilter, self).__init__(*args, **kwargs)
+        self.fields["settlement"].required = False
+        self.fields["locality_type"].required = False
+        self.fields["address"].required = False
+        self.fields["point_of_contact"].required = False
+        self.fields["fire_object"].required = False
+        self.fields["floors_number"].required = False
+        self.fields["degree_of_fireres"].required = False
+        self.fields["object_charact"].required = False
+
 class FireManagerForm(ModelForm):
     class Meta:
         model = FireManager
@@ -39,6 +51,12 @@ class FireConseqPeopleForm(ModelForm):
         exclude = [
             "card_id",            
         ]
+        widgets = {            
+            "first_deceased_detect": DateTimeInput(attrs={'type': 'datetime-local'}),
+            "last_deceased_detect": DateTimeInput(attrs={'type': 'datetime-local'})
+        }
+
+
 
 
 class FireDescrForm(ModelForm):

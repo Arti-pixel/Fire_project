@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import resolve_url
+from django.forms import model_to_dict
 
 from .models import GeneralData
 
@@ -13,7 +14,82 @@ def first_page(request):
 
 
 def index(request):
-    return render(request, "index.html", context={"cards": GeneralData.objects.all()})
+    params = {}
+
+    settlement = request.GET.get("settlement")
+    if settlement:
+        params["settlement"] = settlement
+
+    locality_type = request.GET.get("locality_type")
+    if locality_type:
+        params["locality_type"] = locality_type
+
+    address = request.GET.get("address")
+    if address:
+        params["address__contains"] = address
+
+    point_of_contact = request.GET.get("point_of_contact")
+    if point_of_contact:
+        params["point_of_contact"] = point_of_contact
+
+    fire_object = request.GET.get("fire_object")
+    if fire_object:
+        params["fire_object__contains"] = fire_object
+
+    floors_number = request.GET.get("floors_number")
+    if floors_number:
+        params["floors_number"] = floors_number
+
+    degree_of_fireres = request.GET.get("degree_of_fireres")
+    if degree_of_fireres:
+        params["degree_of_fireres"] = degree_of_fireres
+
+    return render(
+        request,
+        "index.html",
+        context={
+            "cards": GeneralData.objects.filter(**params),
+            "filter_form": GeneralDataFormFilter,
+        },
+    )
+
+
+def card_dublicate(request, card_id=None):
+    gd = get_object_or_404(GeneralData, card_id=card_id)
+    gd.card_id = None
+    gd.save()
+    new_card_id = gd.card_id
+
+    for rel, model in [
+        ("fireconseqbuilding", FireConseqBuilding),
+        ("fireconseqpeople", FireConseqPeople),
+        ("firedescr", FireDescr),
+        ("fireequip", FireEquip),
+        ("fireextingagents", FireExtingAgents),
+        ("fireextingagentsconsum", FireExtingAgentsConsum),
+        ("fireservices", FireServices),
+        ("firefightcardauth", FirefightCardAuth),
+        ("othfireservices", OthFireServices),
+        ("othservices", OthServices),
+        ("personnel", Personnel),
+        ("primfireextingmeans", PrimFireExtingMeans),
+        ("specfireequip", SpecFireEquip),
+        ("timeindicators", TimeIndicators),
+        ("trunkstoextingfire", TrunksToExtingFire),
+        ("watersupplyonfire", WaterSupplyOnFire),
+    ]:
+        try:
+            rel_model = model.objects.get(card_id=card_id)
+            kwargs = model_to_dict(rel_model)
+            print(kwargs)
+            kwargs["card_id"] = gd
+            m = model(**kwargs)
+            m.save()
+            setattr(gd, rel, m)            
+        except Exception as e:
+            print(e)
+        
+    return HttpResponseRedirect(resolve_url('index'))
 
 
 def card_page(request, card_id=None):
@@ -78,6 +154,7 @@ def fire_manager(request, card_id):
         request, "fire_manager.html", context={"form": form, "card_id": card_id}
     )
 
+
 def fire_conseq_building(request, card_id):
     gd = get_object_or_404(GeneralData, card_id=card_id)
     fireconseqbuilding = getattr(gd, "fireconseqbuilding", None)
@@ -97,7 +174,9 @@ def fire_conseq_building(request, card_id):
             )
         else:
             return render(
-                request, "fire_conseq_building.html", context={"form": form, "card_id": card_id}
+                request,
+                "fire_conseq_building.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = FireConseqBuildingForm(instance=fireconseqbuilding)
@@ -126,7 +205,9 @@ def fire_conseq_people(request, card_id):
             )
         else:
             return render(
-                request, "fire_conseq_people.html", context={"form": form, "card_id": card_id}
+                request,
+                "fire_conseq_people.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = FireConseqPeopleForm(instance=fireconseqpeople)
@@ -150,9 +231,7 @@ def fire_descr(request, card_id):
                 new_firedescr.card_id = gd
 
             new_firedescr.save()
-            return HttpResponseRedirect(
-                resolve_url("fire-descr", card_id=card_id)
-            )
+            return HttpResponseRedirect(resolve_url("fire-descr", card_id=card_id))
         else:
             return render(
                 request, "fire_descr.html", context={"form": form, "card_id": card_id}
@@ -179,9 +258,7 @@ def fire_equip(request, card_id):
                 new_fireequip.card_id = gd
 
             new_fireequip.save()
-            return HttpResponseRedirect(
-                resolve_url("fire-equip", card_id=card_id)
-            )
+            return HttpResponseRedirect(resolve_url("fire-equip", card_id=card_id))
         else:
             return render(
                 request, "fire_equip.html", context={"form": form, "card_id": card_id}
@@ -213,7 +290,9 @@ def fire_exting_agents(request, card_id):
             )
         else:
             return render(
-                request, "fire_exting_agents.html", context={"form": form, "card_id": card_id}
+                request,
+                "fire_exting_agents.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = FireExtingAgentsForm(instance=fireextingagents)
@@ -242,13 +321,17 @@ def fire_exting_agents_consum(request, card_id):
             )
         else:
             return render(
-                request, "fire_exting_agents_consum.html", context={"form": form, "card_id": card_id}
+                request,
+                "fire_exting_agents_consum.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = FireExtingAgentsConsumForm(instance=fireextingagentsconsum)
 
     return render(
-        request, "fire_exting_agents_consum.html", context={"form": form, "card_id": card_id}
+        request,
+        "fire_exting_agents_consum.html",
+        context={"form": form, "card_id": card_id},
     )
 
 
@@ -266,12 +349,12 @@ def fire_services(request, card_id):
                 new_fireservices.card_id = gd
 
             new_fireservices.save()
-            return HttpResponseRedirect(
-                resolve_url("fire-services", card_id=card_id)
-            )
+            return HttpResponseRedirect(resolve_url("fire-services", card_id=card_id))
         else:
             return render(
-                request, "fire_services.html", context={"form": form, "card_id": card_id}
+                request,
+                "fire_services.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = FireServicesForm(instance=fireservices)
@@ -300,7 +383,9 @@ def firefight_card_auth(request, card_id):
             )
         else:
             return render(
-                request, "firefight_card_auth.html", context={"form": form, "card_id": card_id}
+                request,
+                "firefight_card_auth.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = FirefightCardAuthForm(instance=firefightcardauth)
@@ -329,7 +414,9 @@ def oth_fire_services(request, card_id):
             )
         else:
             return render(
-                request, "oth_fire_services.html", context={"form": form, "card_id": card_id}
+                request,
+                "oth_fire_services.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = OthFireServicesForm(instance=othfireservices)
@@ -353,9 +440,7 @@ def oth_services(request, card_id):
                 new_othservices.card_id = gd
 
             new_othservices.save()
-            return HttpResponseRedirect(
-                resolve_url("oth-services", card_id=card_id)
-            )
+            return HttpResponseRedirect(resolve_url("oth-services", card_id=card_id))
         else:
             return render(
                 request, "oth_services.html", context={"form": form, "card_id": card_id}
@@ -382,9 +467,7 @@ def personnel(request, card_id):
                 new_personnel.card_id = gd
 
             new_personnel.save()
-            return HttpResponseRedirect(
-                resolve_url("personnel", card_id=card_id)
-            )
+            return HttpResponseRedirect(resolve_url("personnel", card_id=card_id))
         else:
             return render(
                 request, "personnel.html", context={"form": form, "card_id": card_id}
@@ -392,9 +475,7 @@ def personnel(request, card_id):
     else:
         form = PersonnelForm(instance=personnel)
 
-    return render(
-        request, "personnel.html", context={"form": form, "card_id": card_id}
-    )
+    return render(request, "personnel.html", context={"form": form, "card_id": card_id})
 
 
 def prim_fire_exting_means(request, card_id):
@@ -416,13 +497,17 @@ def prim_fire_exting_means(request, card_id):
             )
         else:
             return render(
-                request, "prim_fire_exting_means.html", context={"form": form, "card_id": card_id}
+                request,
+                "prim_fire_exting_means.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = PrimFireExtingMeansForm(instance=primfireextingmeans)
 
     return render(
-        request, "prim_fire_exting_means.html", context={"form": form, "card_id": card_id}
+        request,
+        "prim_fire_exting_means.html",
+        context={"form": form, "card_id": card_id},
     )
 
 
@@ -440,12 +525,12 @@ def spec_fire_equip(request, card_id):
                 new_specfireequip.card_id = gd
 
             new_specfireequip.save()
-            return HttpResponseRedirect(
-                resolve_url("spec-fire-equip", card_id=card_id)
-            )
+            return HttpResponseRedirect(resolve_url("spec-fire-equip", card_id=card_id))
         else:
             return render(
-                request, "spec_fire_equip.html", context={"form": form, "card_id": card_id}
+                request,
+                "spec_fire_equip.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = SpecFireEquipForm(instance=specfireequip)
@@ -469,12 +554,12 @@ def time_indicators(request, card_id):
                 new_timeindicators.card_id = gd
 
             new_timeindicators.save()
-            return HttpResponseRedirect(
-                resolve_url("time-indicators", card_id=card_id)
-            )
+            return HttpResponseRedirect(resolve_url("time-indicators", card_id=card_id))
         else:
             return render(
-                request, "time_indicators.html", context={"form": form, "card_id": card_id}
+                request,
+                "time_indicators.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = TimeIndicatorsForm(instance=timeindicators)
@@ -503,13 +588,17 @@ def trunks_to_exting_fire(request, card_id):
             )
         else:
             return render(
-                request, "trunks_to_exting_fire.html", context={"form": form, "card_id": card_id}
+                request,
+                "trunks_to_exting_fire.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = TrunksToExtingFireForm(instance=trunkstoextingfire)
 
     return render(
-        request, "trunks_to_exting_fire.html", context={"form": form, "card_id": card_id}
+        request,
+        "trunks_to_exting_fire.html",
+        context={"form": form, "card_id": card_id},
     )
 
 
@@ -532,7 +621,9 @@ def water_supply_on_fire(request, card_id):
             )
         else:
             return render(
-                request, "water_supply_on_fire.html", context={"form": form, "card_id": card_id}
+                request,
+                "water_supply_on_fire.html",
+                context={"form": form, "card_id": card_id},
             )
     else:
         form = WaterSupplyOnFireForm(instance=watersupplyonfire)

@@ -7,6 +7,7 @@ urlpatterns = [
     path('',views.index, name='index'),
     path('first_page.html',views.first_page),
     path('card', views.card_page, name="card-create"),
+    path('card-dublicate/<int:card_id>/', views.card_dublicate, name="card-dublicate"),
     path('card/<int:card_id>/', views.card_page, name="card-edit"),
     path('card/<int:card_id>/fire-manager', views.fire_manager, name="fire-manager"),
     path('card/<int:card_id>/fire-conseq-building', views.fire_conseq_building, name="fire-conseq-building"),
