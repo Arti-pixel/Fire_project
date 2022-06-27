@@ -15,10 +15,16 @@
 </script>
 
 <body>
+    {% if user.is_authenticated %}
+    <a>Привет: {{ user.first_name }}</a>
+    <a href={% url 'logout' %}>Выход</a> {% else %}
+    <a href={% url 'register' %}>Регистрация</a>
+    <a href={% url 'my-login' %}>Вход</a> {% endif %}
+
     <h1 class="cntr header">Список карточек боевых действий</h1>
     <form action={% url 'index' %} action="get">
         <div class="filter_form">
-        <div>Населённый пункт: {{ filter_form.settlement }}</div>
+        <div>Населённый пункт: {{ filter_form.settlement }}</div>        
         <div>Вид населённого пункта: {{ filter_form.locality_type }}</div>
         <div>Адрес места пожара: {{ filter_form.address }}</div>
         <div>Район выезда ПЧ: {{ filter_form.point_of_contact }}</div>
@@ -34,26 +40,39 @@
             <th>ИД</th>
             <th>Населённый пункт</th>
             <th>Вид населённого пункта</th>
+            <th>Дата последнего изменения</th>
             <th>Адрес места пожара</th>
             <th>Район выезда ПЧ</th>
             <th>Объект пожара</th>
             <th>Этажность объекта</th>
             <th>Степень огнестойкости</th>
-            <th>Редактировать</th>
-            <th>Дублицировать</th>
+            <th></th>
         </tr>
         {% for card in cards %}
         <tr>
             <td>{{ card.card_id }}</td>
             <td>{{ card.settlement }}</td>
             <td>{{ card.locality_type }}</td>
+            <td>{{ card.update }}</td>
             <td>{{ card.address }}</td>
             <td>{{ card.point_of_contact }}</td>
             <td>{{ card.fire_object }}</td>
             <td>{{ card.floors_number}}</td>
             <td>{{ card.degree_of_fireres }}</td>
-            <td><a href={% url 'card-edit' card_id=card.card_id %}>Редактировать</a></td>
-            <td><a href={% url 'card-dublicate' card_id=card.card_id %}>Дублицировать</a></td>
+            <td>
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  Действие
+                </a>
+              
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item"  href={% url 'card-edit' card_id=card.card_id %}>Редактировать</a></li>
+                  <li><a class="dropdown-item"  href={% url 'card-dublicate' card_id=card.card_id %}>Дублицировать</a></li>
+                  <li><a class="dropdown-item"  href={% url 'pdf-1' card_id=card.card_id %}>Скачать pdf</a></li>
+                </ul>
+              </div>          
+            </td>
+
         </tr>            
         {% endfor %}
     </table>

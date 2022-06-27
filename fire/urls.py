@@ -1,9 +1,10 @@
 #gathered_static_path = os.path.join(settings.BASE_DIR, settings.STATIC_ROOT)
 from . import views
-from django.urls import path
-
+from django.urls import path, include
 
 urlpatterns = [    
+    path("pdf_card/<int:card_id>/.html", views.pdf_card, name="pdf"),
+    path("pdf_card/<int:card_id>/.pdf", views.pdf_card_pdf, name="pdf-1"),    
     path('',views.index, name='index'),
     path('first_page.html',views.first_page),
     path('card', views.card_page, name="card-create"),
@@ -26,4 +27,11 @@ urlpatterns = [
     path('card/<int:card_id>/time-indicators', views.time_indicators, name="time-indicators"),
     path('card/<int:card_id>/trunks-to-exting-fire', views.trunks_to_exting_fire, name="trunks-to-exting-fire"),
     path('card/<int:card_id>/water-supply-on-fire', views.water_supply_on_fire, name="water-supply-on-fire"),
+]
+
+urlpatterns += [
+    path("accounts/register", views.auth, name="register"),
+        path("login", views.login, name="my-login"),
+
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

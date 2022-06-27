@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'fire.apps.FireConfig'
+    'fire.apps.FireConfig',
+    'easy_pdf'
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True 
@@ -137,7 +138,8 @@ STATIC_URL = "/town/static/"
 LOGIN_REDIRECT_URL = "/town"
 LOGOUT_REDIRECT_URL = "/town"
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-
+AUTH_USER_MODEL = "fire.User"
+LOGOUT_REDIRECT_URL = "index"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 

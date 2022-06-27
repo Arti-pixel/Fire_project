@@ -1,4 +1,22 @@
+from datetime import datetime
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+
+
+class User(AbstractUser):
+    sub_end_date = models.DateField(null=True, blank=True)
+
+    @property
+    def sub_is_active(self):
+        now = datetime.now().date()
+        if self.sub_end_date:
+            if self.sub_end_date > now:
+                return True
+            else:
+                return False
+        else:
+            return False
 
 
 class GeneralData(models.Model):
@@ -37,6 +55,7 @@ class GeneralData(models.Model):
     floors_number = models.IntegerField(null=True, blank=True)
     degree_of_fireres = models.IntegerField(null=True, blank=True, choices=dof_choices)
     object_charact = models.TextField(null=False, blank=False)
+    update = models.DateTimeField(auto_now=True, null=True, blank=True)
 
 
 class FireManager(models.Model):

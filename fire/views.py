@@ -1,17 +1,84 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import FileResponse, HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import get_object_or_404, render
+from django.contrib.auth import authenticate, get_user_model, login as user_login
 from django.shortcuts import resolve_url
 from django.forms import model_to_dict
-
+from django.shortcuts import render, redirect
 from .models import GeneralData
 
 from .forms import *
 
 
+def login(request):
+
+    if request.method == "POST":
+        form = AuthenticationForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(
+                request, username=cd["username"], password=cd["password"]
+            )
+            if user is not None:
+                if user.is_active:
+                    user_login(request, user)
+                    return redirect("index")
+            else:
+
+                return render(
+                    request,
+                    "registration/login.html",
+                    {"form": form, "fail_login": True},
+                )
+
+    else:
+        form = AuthenticationForm
+    return render(request, "registration/login.html", {"form": form})
+
+
+def auth(request):
+    if request.method == "POST":
+        user_form = UserRegistrationForm(request.POST)
+        if user_form.is_valid():
+            new_user = user_form.save(commit=False)
+            new_user.set_password(user_form.cleaned_data["password"])
+            new_user.save()
+            return redirect("index")
+        else:
+
+            return render(
+                request, "registration/registration.html", {"user_form": user_form}
+            )
+    else:
+        user_form = UserRegistrationForm()
+    return render(request, "registration/registration.html", {"user_form": user_form})
+
+
 def first_page(request):
     return render(request, "first_page.html")
 
+from io import BytesIO
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa  
+
+# defining the function to convert an HTML file to a PDF file
+def html_to_pdf(template_src, context_dict={}):
+    import weasyprint
+    template = get_template(template_src)
+    html  = template.render(context_dict)
+    
+    return HttpResponse(weasyprint.HTML(string=html).write_pdf(), content_type='application/pdf')
+
+
+def pdf_card_pdf(request, card_id):
+    card = get_object_or_404(GeneralData, pk=card_id)
+    return html_to_pdf("pdf_card.html", context_dict={"card": card})
+
+def pdf_card(request, card_id):
+    card = get_object_or_404(GeneralData, pk=card_id)
+
+    return render(request, "pdf_card.html", context={"card": card})
 
 def index(request):
     params = {}

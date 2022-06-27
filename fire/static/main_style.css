@@ -60,3 +60,17 @@ td {
 .filter_form {
     display: flex;
 }
+
+.card-info-items-container {
+    display: flex;
+    margin-top: 20px;
+}
+
+.card-info-items {
+    width: 20%;
+}
+
+.card-content {
+    width: 75%;
+    margin: 0 auto;
+}

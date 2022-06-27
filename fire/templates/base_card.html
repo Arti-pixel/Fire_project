@@ -11,16 +11,47 @@
       integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="{% static 'admin/css/main_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'main_style.css' %}" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
   <body>
-  {% if card_id and not gd_form %}
-  <a href={% url 'card-edit' card_id %}>Назад к редактированию карточки</a>
-  {% endif %}
-  <a href={% url 'index' %}>К просмотру карточек</a>
-  {% block card_info %}
+    {% if user.is_authenticated %}
+    <a>Привет: {{ user.first_name }}</a>
+    <a href={% url 'logout' %}>Выход</a> {% else %}
+    <a href={% url 'register' %}>Регистрация</a>
+    <a href={% url 'my-login' %}>Вход</a> {% endif %}
+
+    {% if card_id and not gd_form %}
+    <div><a href={% url 'card-edit' card_id %} class="card-info-link">Назад к редактированию карточки</a></div>
+    {% endif %}
+    <div><a href={% url 'index' %} class="card-info-link">К просмотру карточек</a></div>
   
+  {% if card_id %}
+  <div class="card-info-items-container">
+  <div class="card-info-items">
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-conseq-building' card_id %}><div class='item-info-detail'>Последствия пожара(здания и сооружения)</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-conseq-people' card_id %}><div class='item-info-detail'>Последствия пожара(люди)</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-descr' card_id %}><div class='item-info-detail'>Краткое описание пожара</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-equip' card_id %}><div class='item-info-detail'>Основная пожарная техника</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents' card_id %}><div class='item-info-detail'>Израсходовано огнетушащих веществ</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents-consum' card_id %}><div class='item-info-detail'>Огнетушащие вещества, поданные на тушение пожара</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-services' card_id %}><div class='item-info-detail'>Прибывшие подразделения ГПС</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'firefight-card-auth' card_id %}><div class='item-info-detail'>Автор карточки боевых действий</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'oth-fire-services' card_id %}><div class='item-info-detail'>Другие виды прибывших ПО</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'oth-services' card_id %}><div class='item-info-detail'>Другие прибывшие службы</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'personnel' card_id %}><div class='item-info-detail'>Личный состав</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'prim-fire-exting-means' card_id %}><div class='item-info-detail'>Использование первичных средств пожаротушения</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'spec-fire-equip' card_id %}><div class='item-info-detail'>Специальная пожарная техника</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'time-indicators' card_id %}><div class='item-info-detail'>Временные показатели</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'trunks-to-exting-fire' card_id %}><div class='item-info-detail'>Подано стволов на тушение пожара</div></a></div>
+    <div class='card-info-item'><a class='card-info-link' href={% url 'water-supply-on-fire' card_id %}><div class='item-info-detail'>Водоснабжение на пожаре</div></a></div>
+  </div>
+  {% endif %}
+  <div class="card-content">
+  {% block card_info %}  
   {% endblock %}
+  </div>
+  </div>
   </body>
   <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"

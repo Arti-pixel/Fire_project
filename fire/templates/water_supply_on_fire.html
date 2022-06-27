@@ -5,21 +5,14 @@
       <button
         class="accordion-button collapsed"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#panelsStayOpen-collapseTwelve"
-        aria-expanded="false"
-        aria-controls="panelsStayOpen-collapseTwelve"
       >
         Водоснабжение на пожаре
       </button>
     </h2>
     <div
       id="panelsStayOpen-collapseTwelve"
-      class="accordion-collapse collapse"
-      aria-labelledby="panelsStayOpen-headingTwelve"
     >
       <div class="accordion-body">
-        water-supply-on-fire
         <form 
           action={% url 'water-supply-on-fire' card_id %} method="POST">
           {% csrf_token %}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h2,
+    h1 {
+        text-align: center;
+    }
+    
+    .width-320 {
+        width: 225px;
+        display: inline-block;
+    }
+    
+    .width-250 {
+        width: 125px;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    
+    .width-50 {
+        width: 250px;
+        display: inline-block;
+    }
+    
+    body {
+        font-size: .7em;
+    }
+</style>
+
+<body>
+    <h1>КАРТОЧКА АВАРИЙНО-СПАСАТЕЛЬНЫХ РАБОТ</h1>
+    <div>
+        <span class="width-320">Номер карточки: {{ card.card_id }}</span>
+        <span class="width-320">Дата и время сообщения</span><span class="width-250">{{ card.timeindicators.fire_report }} </span><span>Обстоятельства
+            выезда: {{ card.timeindicators.departure_circum }}</span>
+        <br>
+        <span class="width-320">Дата и время выезда</span><span class="width-250">{{ card.timeindicators.departure_to_fire}}</span>
+        <br>
+        <span class="width-320">Дата и время прибытия</span><span class="width-250">{{ card.timeindicators.first_arrival }}</span><span>Расстояние до
+            объекта(км):</span> <span>{{ card.timeindicators.fire_obj_dist}}</span>
+        <br>
+        <span class="width-320">Дата и время окончания АСР</span><span class="width-250">{{ card.timeindicators.localiz_date}}</span>
+        <br>
+        <span class="width-320">Дата и время возвращения в депо</span><span class="width-250">{{ card.timeindicators.firestation_return_date}}</span>
+        <br>
+        <span class="width-320">АСР проводились силами ПО:</span><span>{{ card.firedescr.exting_forces }}</span>
+        <br>
+        <span class="width-320">Район выезда ПЧ:</span><span> {{ card.point_of_contact }}</span>
+        <br>
+        <span class="width-320">Вид происшествия</span><span></span>
+
+        <br>
+        <br>
+        <span class="width-320">Муниципальный район:</span><span class="width-250">{{ card.municipal_area }}</span><span class="width-320">Поселение:</span><span class="width-250">{{ card.settlement }}</span>
+        <br>
+        <span class="width-320">Наименование:</span><span class="width-250"></span><span class="width-320">Тип
+            населенного пункта:</span><span class="width-250">{{ card.locality_type }}</span>
+        <br>
+        <span class="width-320">Адрес места происшествия:</span><span>{{  card.address }}</span>
+        <br>
+        <span class="width-320">Вид объекта происшествия:</span><span></span>
+        <br>
+        <span class="width-320">Характеристика объекта </span><span>{{ card.object_charact }}</span>
+        <br>
+        <span class="width-320">Время прибытия ГПС1</span><span class="width-250">{{ card.fireservices.divis }}  </span><span class="width-320">1-я
+            прибывшая ПЧ ГПС</span><span class="width-250">{{ card.fireservices.divis_date }} </span>
+        <br>
+        <span class="width-320">Время прибытия ДрСл1</span><span class="width-250">{{ card.othfireservices.divis }}</span><span class="width-320">Другие
+            службы 1</span><span class="width-250">{{ card.othfireservices.divis_date }}</span>
+        <br>
+
+
+    </div>
+    <h2>Руководство аварийно-спасательными работами:</h2>
+    <span class="width-320">1-ый РАСР </span><span class="width-250">{{ card.firemanager.manager }}</span><span class="width-320">ФИО
+        РАСР-2</span><span class="width-250">{{ card.firemanager.full_name }}</span>
+    <br>
+    <span class="width-320">ФИО РАСР-1</span><span class="width-250"></span><span class="width-320">3-ий
+        РАСР</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">2-ой РАСР</span><span class="width-250"></span><span class="width-320">ФИО
+        РАСР-3</span><span class="width-250"></span>
+    <br>
+
+
+
+    <h2>Виды АСР, проводимых на месте происшествия:</h2>
+    <span class="width-320">Вид АСР-1:</span><span class="width-250"></span><span class="width-320">Вид
+        АСР-4:</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Вид АСР-2:</span><span class="width-250"></span><span class="width-320">Вид
+        АСР-5:</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Вид АСР-3:</span><span class="width-250"></span><span class="width-320">Вид АСР
+        6:</span><span class="width-250"></span>
+    <br>
+
+
+
+    <h2>Привлечение техники ГПС:</h2>
+    <span class="width-50">АЦ:</span><span>{{ card.specfireequip.fire_truck_lad }}</span><span class="width-50">МП (ПМП):</span><span>{{ card.specfireequip.fire_truck_lad }}</span><span class="width-50">АШ:</span><span></span>
+    <br>
+    <span class="width-50">АЦЛ:</span><span></span><span class="width-50">АМП:</span><span></span><span class="width-50">ИПЛ:</span><span></span>
+    <br>
+    <span class="width-50">АП:</span><span></span><span class="width-50">АЛ:</span><span></span><span class="width-50">АСА:</span><span></span>
+    <br>
+    <span class="width-50">АПТ:</span><span></span><span class="width-50">АКП:</span><span></span><span class="width-50">АСО:</span><span></span>
+    <br>
+    <span class="width-50">АПП:</span><span></span><span class="width-50">АР:</span><span></span><span class="width-50">ПКС:</span><span></span>
+    <br>
+    <span class="width-50">АНР:</span><span></span><span class="width-50">АГДЗС:</span><span></span><span class="width-50">ПП:</span><span></span>
+    <br>
+    <span class="width-50">ПНС:</span><span></span><span class="width-50">АБГ:</span><span></span><span class="width-50">ПК:</span><span></span>
+    <br>
+
+
+    <h2>Привлечение личного состава:</h2>
+    <span class="width-320">Личного состава ФПС МЧС (чел):</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Личного состава ПСС РК (чел):</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Звеньев ГДЗС</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Общее время работы звеньев ГДЗС (мин):</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Звеньев РХР</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Общее время работы звеньев РХР (мин):</span><span class="width-250"></span>
+    <br>
+    <h2>Применение аварийно-спасательного инструмента и оборудования:</h2>
+    <span class="width-320">Применение оборудования 1:</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Применение оборудования 2:</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Применение оборудования 3:</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Применение оборудования 4:</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Применение оборудования 5:</span><span class="width-250"></span>
+    <br>
+    <span class="width-320">Применение оборудования 6:</span><span class="width-250"></span>
+    <br>
+    <h2>Последствия происшествия:</h2>
+    <span class="width-320">Погибло людей: </span><span class="width-250">{{ card.fireconseqpeople.peop_died }} </span><span class="width-320">В том числе
+        травмировано детей:</span><span>{{ card.fireconseqpeople.traum_child }} </span>
+    <br>
+    <span class="width-320">В том числе погибло детей:</span><span class="width-250">{{ card.fireconseqpeople.dead_child }}</span><span class="width-320">Спасено людей:</span><span>{{ card.fireconseqpeople.saved_people }} </span>
+    <br>
+    <span class="width-320">Травмировано людей:</span ><span class="width-250">{{ card.fireconseqpeople.traum_people }}</span><span class="width-320">В том числе
+        спасено детей</span><span>{{ card.fireconseqpeople.saved_child }}</span>
+    <br>
+
+
+
+    <h2>КАСР составил:</h2>
+    <p>КБД составил ПЧ: {{ card.firefightcardauth.division_auth }} </p>
+    <p>КБД составил должность: {{ card.firefightcardauth.post }}</p>
+    <p>КБД составил ФИО: {{ card.firefightcardauth.full_name_auth }}</p>
+</body>
+
+</html>

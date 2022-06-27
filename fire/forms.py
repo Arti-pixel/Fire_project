@@ -1,6 +1,56 @@
 from django.forms import DateInput, DateTimeInput, ModelForm
 from .models import *
 
+from django import forms
+
+
+class AuthenticationForm(forms.Form):
+    """
+    Base class for authenticating users. Extend this to get a form that accepts
+    username/password logins.
+    """
+
+    username = forms.CharField(
+        label="Логин",
+    )
+    password = forms.CharField(
+        label="Пароль",
+        strip=False,
+        widget=forms.PasswordInput,
+    )
+    error_messages = {
+        "invalid_login": (
+            "Please enter a correct %(username)s and password. Note that both "
+            "fields may be case-sensitive."
+        ),
+        "inactive": ("This account is inactive."),
+    }
+
+    class Meta:
+        model = User
+        fields = ("username", "password")
+
+
+class UserRegistrationForm(forms.ModelForm):
+    username = forms.CharField(
+        label="Логин",
+        error_messages={"required": "Пользователь с таким Логином уже существует"},
+    )
+    first_name = forms.CharField(label="Имя")
+    email = forms.EmailField(label="Ваш e-mail")
+    password = forms.CharField(label="Пароль", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Повторите пароль", widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ("username", "first_name", "email")
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd["password"] != cd["password2"]:
+            raise forms.ValidationError("Пароли не совпадают.")
+        return cd["password2"]
+
 
 class GeneralDataForm(ModelForm):
     class Meta:
@@ -16,6 +66,7 @@ class GeneralDataForm(ModelForm):
             "object_charact",
         ]
 
+
 class GeneralDataFormFilter(GeneralDataForm):
     def __init__(self, *args, **kwargs):
         super(GeneralDataFormFilter, self).__init__(*args, **kwargs)
@@ -27,6 +78,7 @@ class GeneralDataFormFilter(GeneralDataForm):
         self.fields["floors_number"].required = False
         self.fields["degree_of_fireres"].required = False
         self.fields["object_charact"].required = False
+
 
 class FireManagerForm(ModelForm):
     class Meta:
@@ -41,7 +93,7 @@ class FireConseqBuildingForm(ModelForm):
     class Meta:
         model = FireConseqBuilding
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -49,21 +101,19 @@ class FireConseqPeopleForm(ModelForm):
     class Meta:
         model = FireConseqPeople
         exclude = [
-            "card_id",            
+            "card_id",
         ]
-        widgets = {            
-            "first_deceased_detect": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "last_deceased_detect": DateTimeInput(attrs={'type': 'datetime-local'})
+        widgets = {
+            "first_deceased_detect": DateTimeInput(attrs={"type": "datetime-local"}),
+            "last_deceased_detect": DateTimeInput(attrs={"type": "datetime-local"}),
         }
-
-
 
 
 class FireDescrForm(ModelForm):
     class Meta:
         model = FireDescr
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -71,7 +121,7 @@ class FireEquipForm(ModelForm):
     class Meta:
         model = FireEquip
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -79,7 +129,7 @@ class FireExtingAgentsForm(ModelForm):
     class Meta:
         model = FireExtingAgents
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -87,7 +137,7 @@ class FireExtingAgentsConsumForm(ModelForm):
     class Meta:
         model = FireExtingAgentsConsum
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -95,18 +145,16 @@ class FireServicesForm(ModelForm):
     class Meta:
         model = FireServices
         exclude = [
-            "card_id",            
+            "card_id",
         ]
-        widgets = {
-            "divis_date": DateTimeInput(attrs={'type': 'datetime-local'})
-        }
+        widgets = {"divis_date": DateTimeInput(attrs={"type": "datetime-local"})}
 
 
 class FirefightCardAuthForm(ModelForm):
     class Meta:
         model = FirefightCardAuth
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -114,28 +162,25 @@ class OthFireServicesForm(ModelForm):
     class Meta:
         model = OthFireServices
         exclude = [
-            "card_id",            
+            "card_id",
         ]
-        widgets = {
-            "oth_divis_date": DateTimeInput(attrs={'type': 'datetime-local'})
-        }
+        widgets = {"oth_divis_date": DateTimeInput(attrs={"type": "datetime-local"})}
+
 
 class OthServicesForm(ModelForm):
     class Meta:
         model = OthServices
         exclude = [
-            "card_id",            
-        ]        
-        widgets = {
-            "oth_serv_date": DateTimeInput(attrs={'type': 'datetime-local'})
-        }        
+            "card_id",
+        ]
+        widgets = {"oth_serv_date": DateTimeInput(attrs={"type": "datetime-local"})}
 
 
 class PersonnelForm(ModelForm):
     class Meta:
         model = Personnel
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -143,7 +188,7 @@ class PrimFireExtingMeansForm(ModelForm):
     class Meta:
         model = PrimFireExtingMeans
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -151,7 +196,7 @@ class SpecFireEquipForm(ModelForm):
     class Meta:
         model = SpecFireEquip
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -159,30 +204,27 @@ class TimeIndicatorsForm(ModelForm):
     class Meta:
         model = TimeIndicators
         exclude = [
-            "card_id",            
+            "card_id",
         ]
         widgets = {
-            "oth_divis_date": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "fire_detection": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "fire_report": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "departure_to_fire": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "first_arrival": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "first_barrel": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "localiz_date": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "open_fire_elim": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "fire_conseq_elim": DateTimeInput(attrs={'type': 'datetime-local'}),
-            "firestation_return_date": DateTimeInput(attrs={'type': 'datetime-local'}),
-            }
-
-
-
+            "oth_divis_date": DateTimeInput(attrs={"type": "datetime-local"}),
+            "fire_detection": DateTimeInput(attrs={"type": "datetime-local"}),
+            "fire_report": DateTimeInput(attrs={"type": "datetime-local"}),
+            "departure_to_fire": DateTimeInput(attrs={"type": "datetime-local"}),
+            "first_arrival": DateTimeInput(attrs={"type": "datetime-local"}),
+            "first_barrel": DateTimeInput(attrs={"type": "datetime-local"}),
+            "localiz_date": DateTimeInput(attrs={"type": "datetime-local"}),
+            "open_fire_elim": DateTimeInput(attrs={"type": "datetime-local"}),
+            "fire_conseq_elim": DateTimeInput(attrs={"type": "datetime-local"}),
+            "firestation_return_date": DateTimeInput(attrs={"type": "datetime-local"}),
+        }
 
 
 class TrunksToExtingFireForm(ModelForm):
     class Meta:
         model = TrunksToExtingFire
         exclude = [
-            "card_id",            
+            "card_id",
         ]
 
 
@@ -190,6 +232,5 @@ class WaterSupplyOnFireForm(ModelForm):
     class Meta:
         model = WaterSupplyOnFire
         exclude = [
-            "card_id",            
+            "card_id",
         ]
-

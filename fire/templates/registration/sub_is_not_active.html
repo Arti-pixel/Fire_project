@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="entry">
+{% if user.sub_end_date %}
+    <p>Ваша подписка больше не активна, обратитесь к администратору</p>
+{% elif not user.sub_end_date and user.is_authenticated %}
+    <p>Для доступа к разделам, обратитесь к администратору</p>
+{% else %}
+<div class="entry"> <p class="entry-text">Для доступа к разделам войдите, пожалуйста, в аккаунт</p> </div>
+{% endif %}
+
+{% endblock %}

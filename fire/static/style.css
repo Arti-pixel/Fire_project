@@ -28,3 +28,13 @@
 .min {
     text-align: center !important;
 }
+
+.card-info-item {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 2px;
+}
+
+.card-info-link {
+    text-decoration: none;
+}
