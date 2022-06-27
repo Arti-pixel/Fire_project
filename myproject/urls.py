@@ -29,5 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('fire.urls')),
 ]
+
+urlpatterns = [path("town/", include(urlpatterns))]
+
 urlpatterns += [
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
