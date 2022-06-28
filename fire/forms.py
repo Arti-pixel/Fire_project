@@ -66,6 +66,17 @@ class GeneralDataForm(ModelForm):
             "object_charact",
         ]
 
+        labels = {
+            "settlement": "Населённый пункт",
+            "locality_type": "Вид населённого пункта",
+            "address": "Адрес места пожара",
+            "point_of_contact": "Район выезда ПЧ",
+            "fire_object": "Объект пожара",
+            "floors_number": "Этажность объекта",
+            "degree_of_fireres": "Степень огнестойкости",
+            "object_charact": "Описание",
+        }
+
 
 class GeneralDataFormFilter(GeneralDataForm):
     def __init__(self, *args, **kwargs):
