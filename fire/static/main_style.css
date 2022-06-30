@@ -87,6 +87,7 @@ td {
 
 .btn-outline-primary:hover {
     border-color: #620CAC !important;
+    color: white !important;
 }
 
 .filter-class {
