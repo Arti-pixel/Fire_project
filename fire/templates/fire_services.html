@@ -17,8 +17,8 @@
         <form 
           action={% url 'fire-services' card_id %} method="POST">
           {% csrf_token %}
-          {{ form.as_p }}              
-          <input type="submit" value="Submit">
+          {{ form }}              
+          <input type="submit" value="Отправить" class="btn btn-outline-primary">
         </form>        
       </div>
     </div>

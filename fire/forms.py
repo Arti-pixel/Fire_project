@@ -52,6 +52,12 @@ class UserRegistrationForm(forms.ModelForm):
         return cd["password2"]
 
 
+class FormControl:
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})
+
 class GeneralDataForm(ModelForm):
     class Meta:
         model = GeneralData
@@ -108,7 +114,12 @@ class FireManagerForm(ModelForm):
         ]
 
 
-class FireConseqBuildingForm(ModelForm):
+class FireConseqBuildingForm(ModelForm, FormControl):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})
+
     class Meta:
         model = FireConseqBuilding
         exclude = [
@@ -117,6 +128,10 @@ class FireConseqBuildingForm(ModelForm):
 
 
 class FireConseqPeopleForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = FireConseqPeople
         exclude = [
@@ -129,6 +144,10 @@ class FireConseqPeopleForm(ModelForm):
 
 
 class FireDescrForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = FireDescr
         exclude = [
@@ -137,6 +156,10 @@ class FireDescrForm(ModelForm):
 
 
 class FireEquipForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = FireEquip
         exclude = [
@@ -145,6 +168,10 @@ class FireEquipForm(ModelForm):
 
 
 class FireExtingAgentsForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = FireExtingAgents
         exclude = [
@@ -153,6 +180,10 @@ class FireExtingAgentsForm(ModelForm):
 
 
 class FireExtingAgentsConsumForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = FireExtingAgentsConsum
         exclude = [
@@ -160,7 +191,12 @@ class FireExtingAgentsConsumForm(ModelForm):
         ]
 
 
+
 class FireServicesForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = FireServices
         exclude = [
@@ -170,6 +206,10 @@ class FireServicesForm(ModelForm):
 
 
 class FirefightCardAuthForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = FirefightCardAuth
         exclude = [
@@ -178,6 +218,10 @@ class FirefightCardAuthForm(ModelForm):
 
 
 class OthFireServicesForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = OthFireServices
         exclude = [
@@ -187,6 +231,10 @@ class OthFireServicesForm(ModelForm):
 
 
 class OthServicesForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = OthServices
         exclude = [
@@ -196,6 +244,10 @@ class OthServicesForm(ModelForm):
 
 
 class PersonnelForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = Personnel
         exclude = [
@@ -204,6 +256,10 @@ class PersonnelForm(ModelForm):
 
 
 class PrimFireExtingMeansForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = PrimFireExtingMeans
         exclude = [
@@ -212,6 +268,10 @@ class PrimFireExtingMeansForm(ModelForm):
 
 
 class SpecFireEquipForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = SpecFireEquip
         exclude = [
@@ -220,6 +280,10 @@ class SpecFireEquipForm(ModelForm):
 
 
 class TimeIndicatorsForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = TimeIndicators
         exclude = [
@@ -240,6 +304,10 @@ class TimeIndicatorsForm(ModelForm):
 
 
 class TrunksToExtingFireForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = TrunksToExtingFire
         exclude = [
@@ -248,6 +316,10 @@ class TrunksToExtingFireForm(ModelForm):
 
 
 class WaterSupplyOnFireForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for f in self.fields.keys():
+            self.fields[f].widget.attrs.update({"class":"form-control"})    
     class Meta:
         model = WaterSupplyOnFire
         exclude = [
