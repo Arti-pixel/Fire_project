@@ -41,7 +41,7 @@ class GeneralData(models.Model):
     card_id = models.AutoField(primary_key=True)
 
     settlement = models.CharField(
-        max_length=300, null=False, blank=False, choices=sattelment_choices
+        max_length=300, null=False, blank=False, choices=sattelment_choices, 
     )
     locality_type = models.CharField(
         max_length=300, null=False, blank=False, choices=locality_type_choices

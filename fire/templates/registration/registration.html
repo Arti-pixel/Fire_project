@@ -19,11 +19,13 @@
     <form action="register" method="post" class="login-form">
         <h4 class="text-center text-bold">Создание аккауна</h4>
         <h4 class="text-center mb-30">Пожалуйста, зарегистрируйтесь, используя следующую форму</h4>
-        {{ user_form.as_p }}
+        <table class="login-table"  >
+        {{ user_form.as_table }}
+        </table>
 
 
         {% csrf_token %}
-        <p><input class=" center-btn btn fx-btn-3d btn-dark fx-btn-zoom" type="submit" value="Создать аккаунт"></p>
+        <p><input  style="margin-left: 47%"  class=" center-btn btn fx-btn-3d btn-dark fx-btn-zoom" type="submit" value="Создать аккаунт"></p>
     </form>
 </div>
 {% comment %} {% endblock %} {% endcomment %}

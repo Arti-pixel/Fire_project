@@ -15,37 +15,41 @@
     <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
   <body>
-    {% if user.is_authenticated %}
-    <a>Привет: {{ user.first_name }}</a>
-    <a href={% url 'logout' %}>Выход</a> {% else %}
-    <a href={% url 'register' %}>Регистрация</a>
-    <a href={% url 'my-login' %}>Вход</a> {% endif %}
-
-
-    <div><a href={% url 'index' %} class="card-info-link">К просмотру карточек</a></div>
-  
+    
+    <header class="header" style="display: flex">
+      <a class="btn btn-outline-primary" href={% url 'index' %} class="card-info-link">К просмотру карточек</a>
+      <div class="header-inner">        
+        {% if user.is_authenticated %}
+        <a>Привет: {{ user.first_name }}</a>
+        <a class="btn btn-outline-primary" href={% url 'logout' %}>Выход</a> {% else %}
+        <a class="btn btn-outline-primary" href={% url 'register' %}>Регистрация</a>
+        <a class="btn btn-outline-primary" href={% url 'my-login' %}>Вход</a> {% endif %}
+        
+      </div>
+    </header>
+  <h1 class="cntr">Карточка боевых действий {{card_id}}</h1>
   {% if card_id %}
   <div class="card-info-items-container">
   <div class="card-info-items">
     {% if card_id and not gd_form %}
     <div class='card-info-item'><a href={% url 'card-edit' card_id %} class="card-info-link">Общие данные</a></div>
     {% endif %}
-    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-conseq-building' card_id %}><div class='item-info-detail'>Последствия пожара(здания и сооружения)</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-conseq-people' card_id %}><div class='item-info-detail'>Последствия пожара(люди)</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-descr' card_id %}><div class='item-info-detail'>Краткое описание пожара</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-equip' card_id %}><div class='item-info-detail'>Основная пожарная техника</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents' card_id %}><div class='item-info-detail'>Израсходовано огнетушащих веществ</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents-consum' card_id %}><div class='item-info-detail'>Огнетушащие вещества, поданные на тушение пожара</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'fire-services' card_id %}><div class='item-info-detail'>Прибывшие подразделения ГПС</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'firefight-card-auth' card_id %}><div class='item-info-detail'>Автор карточки боевых действий</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'oth-fire-services' card_id %}><div class='item-info-detail'>Другие виды прибывших ПО</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'oth-services' card_id %}><div class='item-info-detail'>Другие прибывшие службы</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'personnel' card_id %}><div class='item-info-detail'>Личный состав</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'prim-fire-exting-means' card_id %}><div class='item-info-detail'>Использование первичных средств пожаротушения</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'spec-fire-equip' card_id %}><div class='item-info-detail'>Специальная пожарная техника</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'time-indicators' card_id %}><div class='item-info-detail'>Временные показатели</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'trunks-to-exting-fire' card_id %}><div class='item-info-detail'>Подано стволов на тушение пожара</div></a></div>
-    <div class='card-info-item'><a class='card-info-link' href={% url 'water-supply-on-fire' card_id %}><div class='item-info-detail'>Водоснабжение на пожаре</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'fire-conseq-building' card_id %}><div class='item-info-detail'>Последствия пожара(здания и сооружения)</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'fire-conseq-people' card_id %}><div class='item-info-detail'>Последствия пожара(люди)</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'fire-descr' card_id %}><div class='item-info-detail'>Краткое описание пожара</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'fire-equip' card_id %}><div class='item-info-detail'>Основная пожарная техника</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents' card_id %}><div class='item-info-detail'>Израсходовано огнетушащих веществ</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'fire-exting-agents-consum' card_id %}><div class='item-info-detail'>Огнетушащие вещества, поданные на тушение пожара</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'fire-services' card_id %}><div class='item-info-detail'>Прибывшие подразделения ГПС</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'firefight-card-auth' card_id %}><div class='item-info-detail'>Автор карточки боевых действий</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'oth-fire-services' card_id %}><div class='item-info-detail'>Другие виды прибывших ПО</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'oth-services' card_id %}><div class='item-info-detail'>Другие прибывшие службы</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'personnel' card_id %}><div class='item-info-detail'>Личный состав</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'prim-fire-exting-means' card_id %}><div class='item-info-detail'>Использование первичных средств пожаротушения</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'spec-fire-equip' card_id %}><div class='item-info-detail'>Специальная пожарная техника</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'time-indicators' card_id %}><div class='item-info-detail'>Временные показатели</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'trunks-to-exting-fire' card_id %}><div class='item-info-detail'>Подано стволов на тушение пожара</div></a></div>
+    <div class='btn btn-outline-primary card-info-item'><a class='card-info-link' href={% url 'water-supply-on-fire' card_id %}><div class='item-info-detail'>Водоснабжение на пожаре</div></a></div>
   </div>
   {% endif %}
   <div class="card-content">

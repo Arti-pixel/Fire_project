@@ -82,13 +82,21 @@ class GeneralDataFormFilter(GeneralDataForm):
     def __init__(self, *args, **kwargs):
         super(GeneralDataFormFilter, self).__init__(*args, **kwargs)
         self.fields["settlement"].required = False
+        self.fields["settlement"].widget.attrs.update({"class":"form-control"})
         self.fields["locality_type"].required = False
+        self.fields["locality_type"].widget.attrs.update({"class":"form-control"})
         self.fields["address"].required = False
+        self.fields["address"].widget.attrs.update({"class":"form-control"})
         self.fields["point_of_contact"].required = False
+        self.fields["point_of_contact"].widget.attrs.update({"class":"form-control"})
         self.fields["fire_object"].required = False
+        self.fields["fire_object"].widget.attrs.update({"class":"form-control"})
         self.fields["floors_number"].required = False
+        self.fields["floors_number"].widget.attrs.update({"class":"form-control"})
         self.fields["degree_of_fireres"].required = False
+        self.fields["degree_of_fireres"].widget.attrs.update({"class":"form-control"})
         self.fields["object_charact"].required = False
+        self.fields["object_charact"].widget.attrs.update({"class":"form-control"})
 
 
 class FireManagerForm(ModelForm):

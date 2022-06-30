@@ -14,7 +14,6 @@
   <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 <div class="login-form-container reg-bg">
-
   <form method="post" action="{% url 'my-login' %}" class="login-form light">
     <h4 class="text-center header-login text-bold">Авторизация</h4>
 
@@ -22,7 +21,7 @@
     <p class="login-fail text-center">Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз.</p>
     {% endif %}
     {% csrf_token %}
-    <table>
+    <table class="login-table">
 
       <tr>
         <td>{{ form.username.label_tag }}</td>
@@ -33,10 +32,15 @@
         <td>{{ form.password.label_tag }}</td>
         <td>{{ form.password }}</td>
       </tr>
+      <tr>
+        <td>
+        </td>
+      </tr>
     </table>
 
-    <input class="center-btn btn fx-btn-3d btn-dark fx-btn-zoom" type="submit" value="Войти" />
-    <input type="hidden" name="next" value="{{ next }}" />
+    <input style="margin-left: 47%" class="center-btn btn fx-btn-3d btn-dark fx-btn-zoom" type="submit" value="Войти" />
+    <input  type="hidden" name="next" value="{{ next }}" />
+
   </form>
 </div>
 

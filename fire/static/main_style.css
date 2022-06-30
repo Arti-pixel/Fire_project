@@ -74,3 +74,28 @@ td {
     width: 75%;
     margin: 0 auto;
 }
+
+.header-inner {
+    width: 200px;
+    margin-left: auto;
+}
+
+.btn-outline-primary {
+    border-color: #620CAC !important;
+    color: #620CAC !important;
+}
+
+.btn-outline-primary:hover {
+    border-color: #620CAC !important;
+}
+
+.filter-class {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100px;
+}
+
+.login-table {
+    margin: 0 auto;
+}

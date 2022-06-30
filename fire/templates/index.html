@@ -15,39 +15,35 @@
 </script>
 
 <body>
-    {% if user.is_authenticated %}
-    <a>Привет: {{ user.first_name }}</a>
-    <a href={% url 'logout' %}>Выход</a> {% else %}
-    <a href={% url 'register' %}>Регистрация</a>
-    <a href={% url 'my-login' %}>Вход</a> {% endif %}
+    <header class="header">
+        <div class="header-inner">
+            {% if user.is_authenticated %}
+            <a>Привет: {{ user.first_name }}</a>
+            <a class="btn btn-outline-primary" href={% url 'logout' %}>Выход</a> {% else %}
+            <a class="btn btn-outline-primary" href={% url 'register' %}>Регистрация</a>
+            <a class="btn btn-outline-primary" href={% url 'my-login' %}>Вход</a> {% endif %}
+        </div>
+    </header>
 
     <h1 class="cntr header">Список карточек боевых действий</h1>
-    <form action={% url 'index' %} action="get">
-        <div class="filter_form">
-        <div>Населённый пункт: {{ filter_form.settlement }}</div>        
-        <div>Вид населённого пункта: {{ filter_form.locality_type }}</div>
-        <div>Адрес места пожара: {{ filter_form.address }}</div>
-        <div>Район выезда ПЧ: {{ filter_form.point_of_contact }}</div>
-        <div>Объект пожара: {{ filter_form.fire_object }}</div>
-        <div>Этажность объекта: {{ filter_form.floors_number }}</div>
-        <div>Степень огнестойкости: {{ filter_form.degree_of_fireres }}</div>
-    </div>
-    <input type="submit" value="Фильтровать">
-    </form>    
+   
+     
     <a class="btn btn-primary marg butn-color" href={% url 'card-create' %} aria-pressed="true">Создать новую запись</a>
     <table id="app" class="table">
+        <form action={% url 'index' %} action="get" class="form-group">
         <tr>
             <th>ИД</th>
-            <th>Населённый пункт</th>
-            <th>Вид населённого пункта</th>
-            <th>Дата последнего изменения</th>
-            <th>Адрес места пожара</th>
-            <th>Район выезда ПЧ</th>
-            <th>Объект пожара</th>
-            <th>Этажность объекта</th>
-            <th>Степень огнестойкости</th>
-            <th></th>
+            <th>{{ filter_form.settlement }} Населённый пункт</th>
+            <th>{{ filter_form.locality_type }}Вид населённого пункта</th>
+            <th> Дата последнего изменения</th>
+            <th>{{ filter_form.address }} Адрес места пожара </th>
+            <th>{{ filter_form.point_of_contact }} Район выезда ПЧ </th>
+            <th>{{ filter_form.fire_object }} Объект пожара </th>
+            <th>{{ filter_form.floors_number }} Этажность объекта </th>
+            <th>{{ filter_form.degree_of_fireres }} Степень огнестойкости </th>
+            <th class="filter-class"><input type="submit" value="Фильтровать"></th>
         </tr>
+    </form>   
         {% for card in cards %}
         <tr>
             <td>{{ card.card_id }}</td>

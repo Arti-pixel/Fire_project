@@ -33,8 +33,20 @@
     border: 1px solid black;
     border-radius: 5px;
     margin-top: 2px;
+    width: 100% !important;
 }
 
 .card-info-link {
     text-decoration: none;
+    color: #620CAC !important;
+}
+
+.btn-outline-primary {
+    border-color: #620CAC !important;
+    color: #620CAC !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: #6824a3 !important;
+    border-color: #620CAC !important;
 }
